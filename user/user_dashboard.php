@@ -49,6 +49,7 @@ $approved_requests = 0;
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,42 +58,63 @@ $approved_requests = 0;
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
-            background-color: #f0f2f5; /* Light background for the dashboard */
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
         }
+
         .dashboard-card {
             transition: transform 0.2s;
-            border-radius: 0.5rem; /* Rounded corners */
+            border-radius: 0.5rem;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
         .dashboard-card:hover {
-            transform: scale(1.05); /* Scale effect on hover */
+            transform: scale(1.05);
         }
-        .table th, .table td {
-            vertical-align: middle; /* Center align table content */
+
+        .table th,
+        .table td {
+            vertical-align: middle;
         }
+
         .alert {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            z-index: 1050; /* Ensure alert is above other content */
+            z-index: 1050;
+            width: 300px;
+            border-radius: 0.5rem;
         }
-        .content-area {
-            margin-left: 250px; /* Align content with the sidebar width */
-            padding: 20px; /* Add padding for better spacing */
-            width: calc(100% - 250px); /* Adjust width to account for sidebar */
+
+        .content-container {
+            margin-left: 250px;
+            padding: 30px;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .content-container {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            .dashboard-card {
+                margin-bottom: 10px;
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="d-flex">
-        <?php include '../includes/user_sidebar.php'; ?> <!-- Include the sidebar here -->
+        <?php include '../includes/user_sidebar.php'; ?>
 
-        <!-- Main Content -->
-        <div class="content-area">
+        <div class="container mt-4">
             <h1 class="h3 mb-4">Welcome, <?php echo htmlspecialchars($username); ?>!</h1>
-            
-            <!-- Quick Stats -->
+
             <div class="row mb-4">
-                <div class="col-md-4">
+                <div class="col-md-4 col-sm-12">
                     <div class="card dashboard-card text-center shadow-sm">
                         <div class="card-body">
                             <h5 class="card-title">Total Borrowed Items</h5>
@@ -100,7 +122,7 @@ $approved_requests = 0;
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 col-sm-12">
                     <div class="card dashboard-card text-center shadow-sm">
                         <div class="card-body">
                             <h5 class="card-title">Pending Returns</h5>
@@ -108,7 +130,7 @@ $approved_requests = 0;
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 col-sm-12">
                     <div class="card dashboard-card text-center shadow-sm">
                         <div class="card-body">
                             <h5 class="card-title">Approved Requests</h5>
@@ -136,42 +158,42 @@ $approved_requests = 0;
                             </tr>
                         </thead>
                         <tbody>
-                            <?php 
+                            <?php
                             $row_class = '';
                             while ($row = $borrowed_result->fetch_assoc()):
                                 $row_class = $row_class === '' ? 'bg-light' : '';
                                 if ($row['status'] == 'borrowed') $pending_returns++;
                                 if ($row['status'] == 'approved' || $row['status'] == 'borrowed') $approved_requests++;
                             ?>
-                            <tr class="<?php echo $row_class; ?>">
-                                <td><?php echo htmlspecialchars($row['borrow_id']); ?></td>
-                                <td><?php echo htmlspecialchars($row['item_name']); ?></td>
-                                <td><?php echo ucfirst(htmlspecialchars($row['category'])); ?></td>
-                                <td><?php echo htmlspecialchars($row['quantity']); ?></td>
-                                <td><?php echo date('Y-m-d', strtotime($row['borrow_date'])); ?></td>
-                                <td><?php echo date('Y-m-d', strtotime($row['expected_return_date'])); ?></td>
-                                <td>
-                                    <span class="<?php echo getStatusClass($row['status']); ?>">
-                                        <?php echo ucfirst(htmlspecialchars($row['status'])); ?>
-                                    </span>
-                                </td>
-                                <td>
-                                    <?php if ($row['status'] == 'borrowed'): ?>
-                                        <form action="../borrow/handle_return.php" method="POST" class="d-inline">
-                                            <input type="hidden" name="borrow_id" value="<?php echo $row['borrow_id']; ?>">
-                                            <input type="hidden" name="item_id" value="<?php echo $row['item_id']; ?>">
-                                            <input type="hidden" name="category" value="<?php echo $row['category']; ?>">
-                                            <input type="hidden" name="quantity" value="<?php echo $row['quantity']; ?>">
-                                            <input type="hidden" name="from_dashboard" value="1">
-                                            <button type="submit" class="btn btn-primary btn-sm">
-                                                Return
-                                            </button>
-                                        </form>
-                                    <?php else: ?>
-                                        <span class="text-muted">-</span>
-                                    <?php endif; ?>
-                                </td>
-                            </tr>
+                                <tr class="<?php echo $row_class; ?>">
+                                    <td><?php echo htmlspecialchars($row['borrow_id']); ?></td>
+                                    <td><?php echo htmlspecialchars($row['item_name']); ?></td>
+                                    <td><?php echo ucfirst(htmlspecialchars($row['category'])); ?></td>
+                                    <td><?php echo htmlspecialchars($row['quantity']); ?></td>
+                                    <td><?php echo date('Y-m-d', strtotime($row['borrow_date'])); ?></td>
+                                    <td><?php echo date('Y-m-d', strtotime($row['expected_return_date'])); ?></td>
+                                    <td>
+                                        <span class="<?php echo getStatusClass($row['status']); ?>">
+                                            <?php echo ucfirst(htmlspecialchars($row['status'])); ?>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <?php if ($row['status'] == 'borrowed'): ?>
+                                            <form action="../borrow/handle_return.php" method="POST" class="d-inline">
+                                                <input type="hidden" name="borrow_id" value="<?php echo $row['borrow_id']; ?>">
+                                                <input type="hidden" name="item_id" value="<?php echo $row['item_id']; ?>">
+                                                <input type="hidden" name="category" value="<?php echo $row['category']; ?>">
+                                                <input type="hidden" name="quantity" value="<?php echo $row['quantity']; ?>">
+                                                <input type="hidden" name="from_dashboard" value="1">
+                                                <button type="submit" class="btn btn-primary btn-sm">
+                                                    Return
+                                                </button>
+                                            </form>
+                                        <?php else: ?>
+                                            <span class="text-muted">-</span>
+                                        <?php endif; ?>
+                                    </td>
+                                </tr>
                             <?php endwhile; ?>
                         </tbody>
                     </table>
@@ -183,10 +205,12 @@ $approved_requests = 0;
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
 
 <?php
-function getStatusClass($status) {
+function getStatusClass($status)
+{
     switch ($status) {
         case 'borrowed':
             return 'text-warning';

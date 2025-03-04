@@ -1,39 +1,68 @@
-<div class="sidebar bg-dark text-white p-4" style="width: 250px; height: 100vh; position: fixed; border-radius: 15px;">
-    <h2 class="h4 text-center mb-4">User Dashboard</h2>
-    <nav class="mt-4">
-        <a class="nav-link text-white" href="../user/user_dashboard.php">
-            <i class="fas fa-home"></i> Home
-        </a>
-        <a class="nav-link text-white" href="../request/request_user.php">
-            <i class="fas fa-clipboard-list"></i> My Requests
-        </a>
-        <a class="nav-link text-white" href="../user/account_settings.php">
-            <i class="fas fa-user-cog"></i> Profile Settings
-        </a>
-    </nav>
-    <div class="mt-auto">
-        <a href="logout.php" class="nav-link text-white">
-            <i class="fas fa-sign-out-alt"></i> Logout
-        </a>
-    </div>
-</div>
+<?php
+$current_page = basename($_SERVER['PHP_SELF']);
+?>
 
 <style>
     .sidebar {
-        background-color: #343a40; /* Dark background for the sidebar */
-        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
-        border-radius: 15px; /* Rounded corners for the sidebar */
+        background-color: #424242;
+        width: 230px;
+        transition: background-color 0.3s;
     }
-    .nav-link {
-        transition: background-color 0.3s; /* Smooth transition for hover effect */
-        padding: 10px 15px; /* Add padding for better click area */
+
+    .sidebar a {
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        font-size: 16px;
+        color: #f0f0f0;
+        padding: 8px;
     }
-    .nav-link:hover {
-        background-color: #495057; /* Darker background on hover */
-        border-radius: 5px; /* Rounded corners on hover */
+
+    .sidebar a:hover {
+        background-color: hsl(0, 0.00%, 50%);
+        color: #ffffff;
+        transform: scale(1.05);
     }
-    .sidebar h2 {
-        font-weight: bold; /* Bold title */
-        text-align: center; /* Center the title */
+
+    .sidebar a.active {
+        background-color: #007bff;
+        color: white;
+        border: none;
+    }
+
+    @media print {
+        .no-print {
+            display: none !important;
+        }
+
+        .main-content {
+            width: 100%;
+        }
+
+        .print-header {
+            display: block !important;
+        }
     }
 </style>
+
+<div class="d-flex vh-100">
+    <div class="sidebar p-3 d-flex flex-column">
+        <h2 class="h4 text-center mb-4 text-white">User Dashboard</h2>
+        <a class="nav-link text-white mb-3 rounded" href="../user/user_dashboard.php">
+            <i class="fas fa-home"></i> Home
+        </a>
+        <a class="nav-link text-white text-start mb-3 rounded" href="../request/request_user.php">
+            <i class="fas fa-clipboard-list"></i> My Requests
+        </a>
+        <a class="nav-link text-white mb-3 rounded" href="../user/account_settings.php">
+            <i class="fas fa-user-cog"></i> Profile Settings
+        </a>
+
+        <div class="mt-auto">
+            <a href="logout.php" class="nav-link text-white">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </div>
+    </div>
+</div>
