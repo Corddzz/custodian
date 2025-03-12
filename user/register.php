@@ -96,7 +96,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .password-toggle-icon {
+        .password-toggle-icon,
+        .confirm-password-toggle-icon {
             position: absolute;
             right: 0;
             top: 50%;
@@ -158,8 +159,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="position-relative mb-5">
                     <label for="confirm-password" class="form-label">Confirm Password</label>
-                    <input type="password" id="confirm-password" name="confirm_password" class="form-control pe-5" placeholder="Confirm password">
-                    <i onclick="toggleVisibility()" class="password-toggle-icon fa-regular fa-eye-slash p-2"></i>
+                    <input type="password" id="confirm-password" name="confirm-password" class="form-control pe-5" placeholder="Confirm password">
+                    <i onclick="toggleConfirmVisibility()" class="confirm-password-toggle-icon fa-regular fa-eye-slash p-2"></i>
                 </div>
 
                 <div class="d-flex justify-content-between">
@@ -180,18 +181,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script>
         // Toggle password visibility
         function toggleVisibility() {
-            const password = document.getElementById('password');
-            const confirmPassword = document.getElementById('confirm-password');
-            const icon = document.querySelectorAll(".password-toggle-icon");
-            const type = password.type === "password" ? "text" : "password";
+            const password = document.getElementById("password");
+            const icon = document.querySelector(".password-toggle-icon");
 
+            const type = password.type === "password" ? "text" : "password";
             password.type = type;
+
+            icon.classList.toggle("fa-eye-slash");
+            icon.classList.toggle("fa-eye");
+
+        }
+
+        function toggleConfirmVisibility() {
+            const confirmPassword = document.getElementById('confirm-password');
+            const icon = document.querySelector(".confirm-password-toggle-icon");
+
+            const type = confirmPassword.type === "password" ? "text" : "password";
             confirmPassword.type = type;
 
-            icon.forEach(i => {
-                i.classList.toggle("fa-eye-slash");
-                i.classList.toggle("fa-eye");
-            });
+            icon.classList.toggle("fa-eye-slash");
+            icon.classList.toggle("fa-eye");
         }
     </script>
 </body>
