@@ -64,6 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap 5 CSS -->
     <link rel="stylesheet" href="./asset/css/bootstrap.min.css">
+    <!-- Bootstrap JS -->
+    <script defer src="./asset/js/bootstrap.bundle.min.js"></script>
 
     <!-- Bootstrap Icon -->
     <!-- <link rel="stylesheet" href="./asset/css/bootstrapicon.css"> -->
@@ -71,14 +73,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <!-- Fontawesome icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <title>Login - San Ramon Catholic School</title>
+
     <style>
-        /* Custom Background and Layout Styling */
         body {
             background: url('img/bg.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-size: cover;
             height: 100vh;
             width: 100%;
         }
@@ -127,40 +128,33 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <div class="login-container mx-auto">
             <h2 class="text-center text-black mb-4">Login</h2>
             <form action="" method="POST">
-                <!-- Username Field -->
                 <div class="mb-3">
                     <label for="username" class="form-label text-black">Username</label>
                     <input type="text" id="username" name="username" class="form-control" required placeholder="Enter Username">
                 </div>
 
-                <!-- Password Field with toggle visibility -->
                 <div class="mb-3 position-relative">
                     <label for="password" class="form-label text-black">Password</label>
                     <input type="password" id="password" name="password" class="form-control pe-5" required placeholder="Enter password">
                     <i onclick="toggleVisibility()" class="password-toggle-icon fa-regular fa-eye-slash p-2"></i>
                 </div>
 
-                <!-- Login Button -->
                 <button type="submit" class="btn btn-primary w-100">Login</button>
 
-                <!-- Separator -->
-                <div class="d-flex align-items-center justify-content-center my-3">
+                <div class="d-flex align-items-center justify-content-center my-2">
                     <hr class="flex-grow-1">
                     <span class="mx-3">or</span>
                     <hr class="flex-grow-1">
                 </div>
             </form>
 
-            <!-- Create new account link -->
             <div class="text-center">
                 <a href="./user/register.php" class="text-primary">Create new account</a>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
+    <script defer>
         // Toggle password visibility
         function toggleVisibility() {
             const password = document.getElementById('password');
