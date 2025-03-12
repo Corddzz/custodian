@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap 5 CSS -->
+    <!-- Bootstrap 5 -->
     <link rel="stylesheet" href="../asset/css/bootstrap.min.css">
     <!-- Bootstrap JS -->
     <script defer src="./asset/js/bootstrap.bundle.min.js"></script>
@@ -111,12 +111,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         .btn-back:hover {
+            border: 1px solid #000;
             background-color: rgba(255, 255, 255, 0.1);
         }
 
         .btn-signup {
             background-color: #007bff;
-            color: #fff;
             transition: background-color 0.3s;
         }
 
@@ -169,7 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <span>Back</span>
                     </a>
 
-                    <button type="submit" class="btn btn-signup d-flex align-items-center">
+                    <button type="submit" class="btn btn-signup d-flex align-items-center text-light">
                         <span>Sign Up</span>
                         <i class="fa-solid fa-arrow-right-from-bracket ms-2"></i>
                     </button>

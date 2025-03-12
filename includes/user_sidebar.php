@@ -60,7 +60,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         </a>
 
         <div class="mt-auto">
-            <a href="logout.php" class="nav-link text-white">
+            <a href="logout.php" class="nav-link text-white rounded">
                 <i class="fas fa-sign-out-alt"></i> Logout
             </a>
         </div>
