@@ -62,63 +62,114 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- TailwindCSS CDN -->
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <!-- Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="./asset/css/bootstrap.min.css">
+
+    <!-- Bootstrap Icon -->
+    <!-- <link rel="stylesheet" href="./asset/css/bootstrapicon.css"> -->
+
     <!-- Fontawesome icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <title>Login - San Ramon Catholic School</title>
+    <style>
+        /* Custom Background and Layout Styling */
+        body {
+            background: url('img/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+            width: 100%;
+        }
 
+        .image-background {
+            background: url('img/san_ramon.jpg') no-repeat center center;
+            background-size: cover;
+            height: 45vh;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            opacity: 0.4;
+        }
+
+        .login-container {
+            position: relative;
+            top: 55%;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .password-toggle-icon {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
-<body class="bg-[url('img/bg.jpg')] bg-cover bg-center bg-no-repeat w-full h-screen">
-    <div class="flex items-center justify-center bg-[url('img/san_ramon.jpg')] bg-cover bg-center bg-no-repeat w-full h-[45vh]">
-        <div class="absolute inset-0 bg-black opacity-40"></div>
-        <div class="relative top-52 bg-white/30 backdrop-blur-sm border border-white/10 p-8 rounded-lg shadow-xl max-w-sm w-full">
-
-            <h2 class="text-3xl font-bold ext-center text-black mb-6 text-center">Login</h2>
-            <form action="" method="POST" class="space-y-4">
-                <div>
-                    <label for="username" class="block text-sm font-bold text-black">Username</label>
-                    <input type="text" id="username" name="username" class="w-full p-3 mt-1 bg-transparent border border-black/50 rounded-md focus:outline-none" required placeholder="Enter Username">
+<body>
+    <div class="image-background d-flex justify-content-center align-items-center">
+        <div class="overlay"></div>
+        <div class="login-container mx-auto">
+            <h2 class="text-center text-black mb-4">Login</h2>
+            <form action="" method="POST">
+                <!-- Username Field -->
+                <div class="mb-3">
+                    <label for="username" class="form-label text-black">Username</label>
+                    <input type="text" id="username" name="username" class="form-control" required placeholder="Enter Username">
                 </div>
 
-                <!-- Toggle Password -->
-                <script>
-                    function toggleVisibility() {
-                        const password = document.getElementById('password');
-                        const icon = document.querySelector(".password-toggle-icon");
-                        password.type = password.type === "password" ? "text" : "password";
-                        icon.classList.toggle("fa-eye-slash");
-                        icon.classList.toggle("fa-eye");
-                    }
-                </script>
-
-                <div class="relative">
-                    <label for="password" class="block text-sm font-bold text-black">Password</label>
-                    <input type="password" id="password" name="password" class="w-full p-3 mt-1 bg-transparent border border-black/50 rounded-md focus:outline-none pr-10" required placeholder="Enter password">
-
-                    <i onclick="toggleVisibility()" class="password-toggle-icon fa-regular fa-eye-slash absolute right-3 top-[50px] transform -translate-y-1/2 text-black cursor-pointer"></i>
+                <!-- Password Field with toggle visibility -->
+                <div class="mb-3 position-relative">
+                    <label for="password" class="form-label text-black">Password</label>
+                    <input type="password" id="password" name="password" class="form-control pe-5" required placeholder="Enter password">
+                    <i onclick="toggleVisibility()" class="password-toggle-icon fa-regular fa-eye-slash p-2"></i>
                 </div>
 
-                <button type="submit" class="w-full py-3 px-6 mb-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition">
-                    Login
-                </button>
+                <!-- Login Button -->
+                <button type="submit" class="btn btn-primary w-100">Login</button>
 
-                <div class="flex items-center justify-center space-x-4 w-full">
-                    <hr class="flex-grow border-t border-black">
-                    <span class="px-4 text-black">or</span>
-                    <hr class="flex-grow border-t  border-black">
+                <!-- Separator -->
+                <div class="d-flex align-items-center justify-content-center my-3">
+                    <hr class="flex-grow-1">
+                    <span class="mx-3">or</span>
+                    <hr class="flex-grow-1">
                 </div>
-
             </form>
 
-            <div class="w-full text-center">
-                <a href="./user/register.php" class="text-blue-800 hover:text-blue-500 duration-300 transition-all">Create new account</a>
+            <!-- Create new account link -->
+            <div class="text-center">
+                <a href="./user/register.php" class="text-primary">Create new account</a>
             </div>
         </div>
-
     </div>
 
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Toggle password visibility
+        function toggleVisibility() {
+            const password = document.getElementById('password');
+            const icon = document.querySelector(".password-toggle-icon");
+            password.type = password.type === "password" ? "text" : "password";
+            icon.classList.toggle("fa-eye-slash");
+            icon.classList.toggle("fa-eye");
+        }
+    </script>
 </body>
 
 </html>
