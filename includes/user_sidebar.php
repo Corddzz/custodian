@@ -48,14 +48,13 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
 <div class="d-flex vh-100">
     <div class="sidebar p-3 d-flex flex-column">
-        <h2 class="h4 text-center mb-4 text-white">User Dashboard</h2>
-        <a class="nav-link text-white mb-3 rounded" href="../user/user_dashboard.php">
+        <a href="../user/user_dashboard.php" class="nav-link  text-white mb-3 rounded <?php echo ($current_page === 'user_dashboard.php') ? 'active ' : ''; ?>">
             <i class="fas fa-home"></i> Home
         </a>
-        <a class="nav-link text-white text-start mb-3 rounded" href="../request/request_user.php">
+        <a href="../request/request_user.php" class="nav-link text-white text-start mb-3 rounded <?php echo ($current_page === 'request_user.php') ? 'active ' : ''; ?>">
             <i class="fas fa-clipboard-list"></i> My Requests
         </a>
-        <a class="nav-link text-white mb-3 rounded" href="../user/account_settings.php">
+        <a href="../user/account_settings.php" class="nav-link text-white mb-3 rounded <?php echo ($current_page === 'account_settings.php') ? 'active ' : ''; ?>">
             <i class="fas fa-user-cog"></i> Profile Settings
         </a>
 
