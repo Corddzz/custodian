@@ -8,33 +8,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = isset($_POST['username']) ? trim($_POST['username']) : '';
     $password = isset($_POST['password']) ? $_POST['password'] : '';
     $confirm_password = isset($_POST['confirm_password']) ? $_POST['confirm_password'] : '';
-    $role = 1; // 1 for regular user, assuming 0 is for admin or unverified users
+    $role = 1;
 
-    if ($username && $password && $confirm_password) {
-        if ($password !== $confirm_password) {
-            $error = "Passwords do not match.";
-        } else {
-            $stmt = $conn->prepare("INSERT INTO users (username, password) FROM users WHERE username = ?");
-            $stmt->bind_param("s", $username);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            if ($result->num_rows > 0) {
-                $error = "Username already exists.";
-            } else {
-                $stmt = $conn->prepare("INSERT INTO users (username, password, role) VALUES (?, ?, ?)");
-                $stmt->bind_param("ssi", $username, $password, $role);
-
-                if ($stmt->execute()) {
-                    $message = "Registration successful. You can now login.";
-                } else {
-                    $error = "Error: " . $stmt->error;
-                }
-            }
-        }
+    if ($password === $confirm_password) {
+        $stmt = $conn->prepare("INSERT INTO `users`(`username`, `password`, `role`) VALUES (?, ?, ?)");
+        $stmt->bind_param("ssi", $username, $password, $role);
+        $stmt->execute();
     } else {
-        $error = "Please fill in all fields.";
+        echo "Error: " . $stmt->error;
     }
+
+    $stmt->close();
+    $conn->close();
+
+    // $role = 1;
+
+    // if ($username && $password && $confirm_password) {
+    //     if ($password !== $confirm_password) {
+    //         $error = "Passwords do not match.";
+    //     } else {
+    //         $stmt = $conn->prepare("INSERT INTO users (username, password) FROM users WHERE username = ?");
+    //         $stmt->bind_param("s", $username);
+    //         $stmt->execute();
+    //         $result = $stmt->get_result();
+    //         if ($result->num_rows > 0) {
+    //             $error = "Username already exists.";
+    //         } else {
+    //             $stmt = $conn->prepare("INSERT INTO users (username, password, role) VALUES (?, ?, ?)");
+    //             $stmt->bind_param("ssi", $username, $password, $role);
+
+    //             if ($stmt->execute()) {
+    //                 $message = "Registration successful. You can now login.";
+    //             } else {
+    //                 $error = "Error: " . $stmt->error;
+    //             }
+    //         }
+    //     }
+    // } else {
+    //     $error = "Please fill in all fields.";
+    // }
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!-- Fontawesome icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>Registration - San Ramon Catholic School</title>
+    <title>Sign Up - San Ramon Catholic School</title>
 
     <style>
         body {
@@ -147,19 +162,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form action="" method="POST" class="space-y-4">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input type="text" id="username" name="username" class="form-control" placeholder="Enter Username">
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Enter Username" required>
                 </div>
 
                 <div class="position-relative mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" id="password" name="password" class="form-control pe-5" placeholder="Enter password">
+                    <input type="password" id="password" name="password" class="form-control pe-5" placeholder="Enter password" required>
 
                     <i onclick="toggleVisibility()" class="password-toggle-icon fa-regular fa-eye-slash p-2"></i>
                 </div>
 
                 <div class="position-relative mb-5">
                     <label for="confirm-password" class="form-label">Confirm Password</label>
-                    <input type="password" id="confirm-password" name="confirm-password" class="form-control pe-5" placeholder="Confirm password">
+                    <input type="password" id="confirm-password" name="confirm_password" class="form-control pe-5" placeholder="Confirm password" required>
                     <i onclick="toggleConfirmVisibility()" class="confirm-password-toggle-icon fa-regular fa-eye-slash p-2"></i>
                 </div>
 

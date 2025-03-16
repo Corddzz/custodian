@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <th>Category</th>
                                 <th>Quantity</th>
                                 <th>Borrow Date</th>
-                                <th>Status</th>
+                                <!-- <th>Status</th> -->
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <td><?php echo ucfirst(htmlspecialchars($row['category'])); ?></td>
                                         <td><?php echo  $row['quantity']; ?></td>
                                         <td><?php echo date('Y-m-d', strtotime($row['borrow_date'])); ?></td>
-                                        <td><?php echo  $row['status']; ?></td>
+                                        <!-- <td><?php echo  $row['status']; ?></td> -->
                                         <td>
                                             <select name="requests[<?php echo $row['borrow_id']; ?>]" class="form-select">
                                                 <option value="">Select Action</option>
