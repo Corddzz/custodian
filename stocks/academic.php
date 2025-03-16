@@ -23,6 +23,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <!-- Bootstrap JS -->
     <script defer src="./asset/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="../img/SRCS logo.jpg">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 

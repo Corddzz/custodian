@@ -72,6 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     <!-- Fontawesome icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="icon" href="./img/SRCS logo.jpg">
     <title>Login - San Ramon Catholic School</title>
 
     <style>

@@ -60,6 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="../asset/css/bootstrap.min.css">
     <!-- Booststrap JS -->
     <script defer src="../asset/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" href="../img/SRCS logo.jpg">
+
 </head>
 
 <body>
