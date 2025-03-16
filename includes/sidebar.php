@@ -1,5 +1,17 @@
 <?php
+
 $current_page = basename($_SERVER['PHP_SELF']);
+
+// session_start();
+
+// session_unset();
+
+// session_destroy();
+
+// if(ini_get("session.use_cookies")) {
+//     $params = session_get_cookie_params();
+// }
+
 ?>
 
 <!DOCTYPE html>
