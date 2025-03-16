@@ -1,37 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Requests</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap 5 -->
+    <link rel="stylesheet" href="../asset/css/bootstrap.min.css">
+    <!-- Booststrap JS -->
+    <script defer src="../asset/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>User Request</title>
     <style>
         body {
-            background-color: #f8f9fa; /* Light background */
+            background-color: #f8f9fa;
         }
-        .sidebar {
-            min-height: 100vh;
-            background-color: #343a40;
-            width: 240px;
-            position: fixed;
-            padding-top: 20px;
-        }
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-            padding: 15px;
-            display: block;
-            transition: 0.3s;
-        }
-        .sidebar a:hover {
-            background-color: #495057;
-        }
+
         .main-content {
             margin-left: 240px;
             padding: 30px;
             flex-grow: 1;
         }
+
         .dashboard-card {
             display: flex;
             align-items: center;
@@ -45,21 +32,25 @@
             transition: transform 0.3s, box-shadow 0.3s;
             text-align: center;
         }
+
         .dashboard-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
         }
+
         .icon-container {
             background-color: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             padding: 15px;
             margin-bottom: 10px;
         }
+
         .icon-container i {
             font-size: 2rem;
         }
     </style>
 </head>
+
 <body class="d-flex">
     <!-- Sidebar -->
     <?php include '../includes/user_sidebar.php'; ?>
@@ -94,5 +85,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
-        
